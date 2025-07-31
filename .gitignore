@@ -2,8 +2,7 @@
 node_modules/
 
 # Environment
-.env
-.env.sample
+.env*
 
 # Logs
 npm-debug.log*
