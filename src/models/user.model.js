@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -50,7 +50,7 @@ const userSchema = mongoose.Schema(
   }
 );
 
-// Encrypt the password.
+// Encrypt the password
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -58,14 +58,13 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// Check the user entered password is same as the encrypted password.
+// Method to compare password
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-// Now generate Access token.
+// Generate Access Token
 userSchema.methods.generateAccessToken = function () {
-  // Short lived access token
   return jwt.sign(
     {
       _id: this._id,
@@ -79,9 +78,8 @@ userSchema.methods.generateAccessToken = function () {
   );
 };
 
-// Now generate Refresh token.
+// Generate Refresh Token
 userSchema.methods.generateRefreshToken = function () {
-  // Saved in database
   return jwt.sign(
     {
       _id: this._id,
@@ -93,4 +91,6 @@ userSchema.methods.generateRefreshToken = function () {
   );
 };
 
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+
+export default User;

@@ -1,10 +1,11 @@
-const { createLogger, format, transports } = require("winston");
-const { combine, timestamp, json, colorize } = format;
+import { createLogger, format, transports } from "winston";
+
+const { combine, timestamp, json, colorize, printf } = format;
 
 // Custom format for console logging with colors
-const consoleLogFormat = format.combine(
-  format.colorize(),
-  format.printf(({ level, message, timestamp }) => {
+const consoleLogFormat = combine(
+  colorize(),
+  printf(({ level, message, timestamp }) => {
     return `${level}: ${message}`;
   })
 );
@@ -21,4 +22,4 @@ const logger = createLogger({
   ],
 });
 
-module.exports = logger;
+export default logger;

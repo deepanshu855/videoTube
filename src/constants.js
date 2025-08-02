@@ -1,3 +1,3 @@
-DB_NAME = "vidtube";
+const DB_NAME = "vidtube";
 
-module.exports = DB_NAME;
+export default DB_NAME;

@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
+import mongoose from "mongoose";
+import aggregatePaginate from "mongoose-aggregate-paginate-v2";
 
-const commentSchema = mongoose.Schema(
+const commentSchema = new mongoose.Schema(
   {
     content: {
       type: String,
@@ -22,4 +22,7 @@ const commentSchema = mongoose.Schema(
 );
 
 commentSchema.plugin(aggregatePaginate);
-module.exports = mongoose.model("Comment", commentSchema);
+
+const Comment = mongoose.model("Comment", commentSchema);
+
+export default Comment;

@@ -1,12 +1,10 @@
-// API Response always written as class
-
 class ApiResponse {
-  constructor(statusCode, data, message = "Success") {
-    ((this.statusCode = statusCode),
-      (this.data = data),
-      (this.message = message),
-      (this.successs = statusCode < 400)); //Boolean value
+  constructor(statusCode, data, message = 'Success') {
+    this.statusCode = statusCode;
+    this.data = data;
+    this.message = message;
+    this.successs = statusCode < 400; // Boolean value
   }
 }
 
-module.exports = ApiResponse;
+export default ApiResponse;

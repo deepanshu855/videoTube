@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const playlistSchema = mongoose.Schema(
+const playlistSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -26,4 +26,6 @@ const playlistSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Playlist", playlistSchema);
+const Playlist = mongoose.model("Playlist", playlistSchema);
+
+export default Playlist;

@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const aggregatePaginate = require("mongoose-aggregate-paginate-v2");
+import mongoose from "mongoose";
+import aggregatePaginate from "mongoose-aggregate-paginate-v2";
 
-const videoSchema = mongoose.Schema(
+const videoSchema = new mongoose.Schema(
   {
     videoFile: {
       type: String,
@@ -28,7 +28,7 @@ const videoSchema = mongoose.Schema(
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Video",
+      ref: "User", // corrected from 'Video' to 'User'
     },
   },
   {
@@ -38,4 +38,6 @@ const videoSchema = mongoose.Schema(
 
 videoSchema.plugin(aggregatePaginate);
 
-module.exports = mongoose.model("Video", videoSchema);
+const Video = mongoose.model("Video", videoSchema);
+
+export default Video;

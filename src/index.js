@@ -1,12 +1,13 @@
-const app = require("./app.js");
-require("dotenv").config();
-const connectDB = require("./db/index.js");
+import app from "./app.js";
+import dotenv from "dotenv";
+import connectDB from "./db/index.js";
 
-// winston and morgan logger;
-const logger = require("./logger.js");
-const morgan = require("morgan");
+import logger from "./logger.js";
+import morgan from "morgan";
+
+dotenv.config();
+
 const morganFormat = ":method :url :status :response-time ms";
-
 const PORT = process.env.PORT || 3001;
 
 app.use(
@@ -32,5 +33,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.log(`MongoDB connection error`, err);
+    console.log("MongoDB connection error", err);
   });

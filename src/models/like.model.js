@@ -1,22 +1,22 @@
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
 
-const likeSchema = mongoose.Schema(
+const likeSchema = new mongoose.Schema(
   {
     video: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Video",
+      ref: 'Video',
     },
     comment: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Comment",
+      ref: 'Comment',
     },
     tweet: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Tweet",
+      ref: 'Tweet',
     },
     likedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   },
   {
@@ -24,4 +24,6 @@ const likeSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Like", likeSchema);
+const Like = mongoose.model('Like', likeSchema);
+
+export default Like;

@@ -1,20 +1,14 @@
-// id string pk
-//   channel ObjectId users
-//   subscriber ObjectId users
-//   updatedAt Date
-//   createdAt Date
+import mongoose from 'mongoose';
 
-const mongoose = require("mongoose");
-
-const subscriptionSchema = mongoose.Schema(
+const subscriptionSchema = new mongoose.Schema(
   {
     channel: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
     subscriber: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
   },
   {
@@ -22,4 +16,6 @@ const subscriptionSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Subscription", subscriptionSchema);
+const Subscription = mongoose.model('Subscription', subscriptionSchema);
+
+export default Subscription;

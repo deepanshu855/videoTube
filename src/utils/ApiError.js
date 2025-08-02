@@ -1,5 +1,3 @@
-// Also a class which extends Error class in node;
-
 class ApiError extends Error {
   constructor(
     statusCode,
@@ -14,7 +12,6 @@ class ApiError extends Error {
     this.success = false;
     this.errors = errors;
 
-    // This if else is optional
     if (stack) {
       this.stack = stack;
     } else {
@@ -22,3 +19,5 @@ class ApiError extends Error {
     }
   }
 }
+
+export default ApiError;

@@ -1,13 +1,12 @@
-const express = require("express");
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+
+import healthcheckRouter from "./routes/healthcheck.routes.js";
 
 const app = express();
 
-// import routes
-const healthcheckRouter = require("./routes/healthcheck.routes.js");
-
-// CORS middleware;
+// CORS middleware
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
@@ -15,15 +14,13 @@ app.use(
   })
 );
 
-// Common middlewares;
+// Common middlewares
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-// use routes
-
+// Use routes
 app.use("/api/v1/healthcheck", healthcheckRouter);
-// Once we reach this route the healthcheckRouter will do rest of the work.
 
-module.exports = app;
+export default app;
